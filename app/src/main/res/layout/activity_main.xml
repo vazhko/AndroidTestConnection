@@ -15,29 +15,32 @@
             android:id="@+id/textViewAdressName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:EditText="false"
             android:text="@string/adress_name" />
 
-        <TextView
+        <EditText
             android:id="@+id/textViewAdress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorBkground"
-            android:textSize="30sp"
-            tools:layout_height="wrap_content" />
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            android:digits="0123456789."
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textViewPortName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:EditText="false"
             android:text="@string/port_name" />
 
-        <TextView
-            android:id="@+id/textView7"
+        <EditText
+            android:id="@+id/textViewPort"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorBkground"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            android:digits="0123456789"
             android:textSize="30sp" />
 
         <TextView
@@ -50,6 +53,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/check_link" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="58dp"
+            tools:layout_editor_absoluteY="235dp"
+            />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

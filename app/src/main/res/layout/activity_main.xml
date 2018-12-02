@@ -31,7 +31,8 @@
             android:id="@+id/txtPortName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/port_name" />
+            android:text="@string/port_name"
+            />
 
         <EditText
             android:id="@+id/txtPort"
@@ -41,7 +42,16 @@
             android:digits="0123456789"
             android:ems="10"
             android:inputType="number|numberDecimal"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            />
+
+        <ProgressBar
+            android:id="@+id/pbCount"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            />
 
         <TextView
             android:id="@+id/txtResult"
@@ -54,6 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/check_link" />
+
+
 
 
     </LinearLayout>

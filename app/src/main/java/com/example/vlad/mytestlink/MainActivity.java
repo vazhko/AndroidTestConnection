@@ -59,29 +59,49 @@ public class MainActivity extends AppCompatActivity {
 
     class MyTask extends AsyncTask<Void, Void, Void> {
         Socket sk;
-        SocketAddress socketAddress;
-
+        InetSocketAddress ia;
+        Exception err;
         //выполняется перед doInBackground, имеет доступ к UI
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Log.d(LOG_TAG, "start");
-            txtResult.setText("start");
+            Log.d(LOG_TAG, getString(R.string.start_str));
+            txtResult.setText(R.string.start_str);
             btnSend.setEnabled(false);
+
+            try {
+                String strAdress = txtAdress.getText().toString();
+                int iPort = Integer.parseInt(txtPort.getText().toString());
+                if (strAdress.length() == 0) {
+                    throw new IllegalArgumentException(getString(R.string.bad_IP_adress_str));
+                }
+                if ((iPort == 0) || (iPort > (0xffff - 1))) {
+                    throw new IllegalArgumentException(getString(R.string.bad_port_str));
+                }
+                ia = new InetSocketAddress(strAdress, iPort);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                Log.d(LOG_TAG, e.getMessage());
+                txtResult.setText(e.getMessage());
+                btnSend.setEnabled(true);
+                cancel(false);
+            }
         }
 
         //doInBackground – будет выполнен в новом потоке, здесь решаем все свои тяжелые задачи. Т.к. поток не основной - не имеет доступа к UI.
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids){
             try {
                 //sk = new Socket("192.168.1.110", 22222);
                 sk = new Socket();
-                sk.connect(new InetSocketAddress("192.168.1.110", 22222), 5000);
+                sk.connect(ia, 5000);
                 while (sk.isConnected() == false) ;
-                Log.d(LOG_TAG, "Connected!");
+
+                Log.d(LOG_TAG, getString(R.string.connected_str));
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.d(LOG_TAG, e.getMessage());
+                err = e;
             }
             return null;
         }
@@ -91,12 +111,18 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            Log.d(LOG_TAG, "stop: " + ((sk.isConnected() )? "Connected": "Not connected"));
-            txtResult.setText("stop: "+ ((sk.isConnected())? "Connected": "Not connected"));
+            //Log.d(LOG_TAG, "stop: " + ((sk.isConnected() )? "Connected": "Not connected"));
+            //txtResult.setText("stop: "+ ((sk.isConnected())? "Connected": "Not connected"));
+            if (err != null){
+                Log.d(LOG_TAG, err.getMessage());
+                txtResult.setText(err.getMessage());
+            }
+
             btnSend.setEnabled(true);
 
-
             if (sk.isConnected()) {
+                Log.d(LOG_TAG, getString(R.string.connected_str));
+                txtResult.setText(R.string.connected_str);
                 try {
                     sk.close();
                 } catch (IOException e) {

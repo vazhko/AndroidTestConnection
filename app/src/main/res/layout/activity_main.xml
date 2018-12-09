@@ -15,7 +15,7 @@
             android:id="@+id/txtAdressName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/adress_name" />
+            android:text="@string/adress_name_str" />
 
         <EditText
             android:id="@+id/txtAdress"
@@ -31,7 +31,7 @@
             android:id="@+id/txtPortName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/port_name"
+            android:text="@string/port_name_str"
             />
 
         <EditText

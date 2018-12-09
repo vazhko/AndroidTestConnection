@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">MyTestLink</string>
-    <string name="adress_name">Adress</string>
-    <string name="port_name">Port</string>
+    <string name="app_name_str">MyTestLink</string>
+    <string name="adress_name_str">Adress</string>
+    <string name="port_name_str">Port</string>
     <string name="check_link">Check</string>
+    <string name="connected_str">Connected!</string>
+    <string name="bad_IP_adress_str">Bad IP adress</string>
+    <string name="bad_port_str">Bad port</string>
+    <string name="start_str">start</string>
 </resources>

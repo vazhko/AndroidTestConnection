@@ -7,4 +7,5 @@ Try to connect to specified ip adress and port and show result.
 
 * GUI
 * sockets
-* thread
+* thread (AsyncTask)
+* SharedPreferences
